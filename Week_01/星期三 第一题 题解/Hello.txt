@@ -1,0 +1,167 @@
+public class Hello  -- 类名
+  minor version: 0
+  major version: 52 -- 说明用的是java8版本
+  flags: ACC_PUBLIC, ACC_SUPER --类的访问标志符
+Constant pool: --常量池
+   #1 = Methodref          #15.#38        // java/lang/Object."<init>":()V  --指向15标签类的38标签方法
+   #2 = Fieldref           #14.#39        // Hello.a:Z  -- 指向14标签类的39标签字段
+   #3 = Fieldref           #14.#40        // Hello.b:B  -- 同上
+   #4 = Fieldref           #14.#41        // Hello.c:S  -- 同上
+   #5 = Fieldref           #14.#42        // Hello.d:C  -- 同上
+   #6 = Fieldref           #14.#43        // Hello.e:I  -- 同上
+   #7 = Float              121.1f         -- 7号标签 为 121.1f 类型为FLoat
+   #8 = Double             333.3d         -- 同上
+  #10 = Long               1312l          -- 同上
+  #12 = Long               3333l          -- 同上
+  #14 = Class              #44            // Hello                   -- 14号标签 指向 44号标签 类型为 Class
+  #15 = Class              #45            // java/lang/Object        -- 同上
+  #16 = Utf8               a            -- 同上
+  #17 = Utf8               Z            -- 同上
+  #18 = Utf8               b            -- 同上
+  #19 = Utf8               B            -- 同上
+  #20 = Utf8               c            -- 同上
+  #21 = Utf8               S            -- 同上
+  #22 = Utf8               ConstantValue        -- 同上
+  #23 = Integer            255          -- 同上
+  #24 = Utf8               d            -- 同上
+  #25 = Utf8               C            -- 同上
+  #26 = Utf8               e            -- 同上
+  #27 = Utf8               I            -- 同上
+  #28 = Utf8               <init>       -- 同上
+  #29 = Utf8               ()V          -- 同上
+  #30 = Utf8               Code         -- 同上
+  #31 = Utf8               LineNumberTable      -- 同上
+  #32 = Utf8               main                 -- 同上
+  #33 = Utf8               ([Ljava/lang/String;)V   -- 同上
+  #34 = Utf8               StackMapTable        -- 同上
+  #35 = Class              #46            // "[Ljava/lang/String;"  -- 同上
+  #36 = Utf8               SourceFile  -- 同上
+  #37 = Utf8               Hello.java -- 同上
+  #38 = NameAndType        #28:#29        // "<init>":()V  --给28号标签 定义#29标签类型
+  #39 = NameAndType        #16:#17        // a:Z
+  #40 = NameAndType        #18:#19        // b:B
+  #41 = NameAndType        #20:#21        // c:S
+  #42 = NameAndType        #24:#25        // d:C
+  #43 = NameAndType        #26:#27        // e:I
+  #44 = Utf8               Hello
+  #45 = Utf8               java/lang/Object
+  #46 = Utf8               [Ljava/lang/String;
+{
+  protected byte b;
+    descriptor: B
+    flags: ACC_PROTECTED
+
+  final short c;
+    descriptor: S
+    flags: ACC_FINAL
+    ConstantValue: int 255
+
+  public char d;
+    descriptor: C
+    flags: ACC_PUBLIC
+
+  int e;
+    descriptor: I
+    flags:
+
+  public Hello();
+    descriptor: ()V   --返回值为void
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1   --栈的深度为2 局部变量表槽位 为1 方法的参数个数为 1
+         -- 从常量池 中将常量 压入栈中 应为 a 和 b 都是1 所以都调用了iconst_1
+         -- 小于128 的 用bipush  用了两个槽位 小于32767 的 用sipush 用了3个槽位
+         -- 因为在 class 中定义 所以 需要都用 aload_0 先把 Hello类load
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V   --  完成Hello类的初始化
+         4: aload_0
+         5: iconst_1
+         6: putfield      #2                  // Field a:Z
+         9: aload_0
+        10: iconst_1
+        11: putfield      #3                  // Field b:B
+        14: aload_0
+        15: sipush        255
+        18: putfield      #4                  // Field c:S
+        21: aload_0
+        22: bipush        97
+        24: putfield      #5                  // Field d:C
+        27: aload_0
+        28: sipush        144
+        31: putfield      #6                  // Field e:I
+        34: return
+      LineNumberTable:  --代表源码行号 和 字节码标志 数字的关系
+        line 8: 0
+        line 9: 4
+        line 10: 9
+        line 11: 14
+        line 12: 21
+        line 13: 27
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=15, args_size=1
+         0: ldc           #7                  // float 121.1f    -- 将常量池中7号标示推到栈顶
+         2: fstore_1                                              --将栈顶的float7 存入 本地变量
+         3: ldc2_w        #8                  // double 333.3d
+         6: dstore_2                                             --将 double同上操作了一边
+         7: fload_1                                             --将本地变量的 121.1f 拿到栈顶
+         8: f2d                                                  -- 121.1f 做类型转化
+         9: dload_2                                              -- 将 333.3d 拿到栈顶
+        10: dmul                                                  -- 相乘
+        11: dstore        4                                       -- 放在本地变量第4号槽位
+        13: fload_1
+        14: f2d
+        15: dload_2
+        16: dadd
+        17: dstore        6
+        19: fload_1
+        20: f2d
+        21: dload_2
+        22: ddiv
+        23: dstore        8
+        25: fload_1
+        26: f2d
+        27: dload_2
+        28: dsub
+        29: dstore        10                                       -- 同上 放在相应的 4 , 6,8 槽位
+        31: ldc2_w        #10                 // long 1312l
+        34: lstore        12
+        36: iconst_0                                        // 开始 for 循环
+        37: istore        14
+        39: iload         14
+        41: iconst_3
+        42: if_icmpge     62                               // if 做比较 当大于 从41行取到栈顶 就跳出
+        45: iload         14
+        47: iconst_1
+        48: if_icmpne     56                                  // if 做比较 当等于 从47行取到的1 就继续下去
+        51: ldc2_w        #12                 // long 3333l
+        54: lstore        12
+        56: iinc          14, 1                    //i++
+        59: goto          39
+        62: return
+      LineNumberTable:
+        line 16: 0
+        line 17: 3
+        line 18: 7
+        line 19: 13
+        line 20: 19
+        line 21: 25
+        line 22: 31
+        line 23: 36
+        line 24: 45
+        line 25: 51
+        line 23: 56
+        line 29: 62
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 39
+          locals = [ class "[Ljava/lang/String;", float, double, double, double, double, double, long, int ]
+                          --                        f       g       v       v1      v2      v3     x     i
+          stack = []
+        frame_type = 16 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+}
