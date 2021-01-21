@@ -1,8 +1,12 @@
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
+package java0.nio01;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import java.io.IOException;
+import java.time.Duration;
 
 /**
  * @author Nano
@@ -13,24 +17,17 @@ import java.io.IOException;
  **/
 public class test2 {
     public static void main(String[] args) {
-        HttpClient httpClient = new HttpClient();
-        // 设置httpClient连接主机服务器超时时间：15000毫秒
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(15000);
-        // 创建GET请求方法实例对象
-        GetMethod getMethod = new GetMethod("http://localhost:8801");
-        // 设置post请求超时时间
-        getMethod.getParams().setParameter(HttpMethodParams.SO_TIMEOUT, 60000);
-        getMethod.addRequestHeader("Content-Type", "text/html; charset=UTF-8");
-        try {
-            int rspCode = httpClient.executeMethod(getMethod);
-            //
-            System.out.println("rspCode:" + rspCode);
-            String result = getMethod.getResponseBodyAsString();
-            System.out.println(result);
-            getMethod.releaseConnection();
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Request request = new Request.Builder().url("http://localhost:8801")
+                 .build();
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            ResponseBody body = response.body();
+            if (response.isSuccessful()) {
+                System.out.println(body.string());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
